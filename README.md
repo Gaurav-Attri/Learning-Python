@@ -1,0 +1,1 @@
+# This repository contains files created while learning Python as a Prerequisite for learning Generative AI

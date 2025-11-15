@@ -35,7 +35,7 @@ def arithmetic_arranger(problems, show_answers=False):
     fourth_output_line = ''
     final_output = ''
 
-    for problem in problems:
+    for i, problem in enumerate(problems):
         string_operands, additionOperator = get_operands_and_operator(problem)
         operands = list(map(lambda operand: int(operand), string_operands))
         result = operands[0] + operands[1] if additionOperator else operands[0] - operands[1]
@@ -54,20 +54,23 @@ def arithmetic_arranger(problems, show_answers=False):
         
         string_operands[1] = (string_operands[1][::-1] + (' +' if additionOperator else ' -'))[::-1]
 
-
-        string_operands[0] = string_operands[0] + ' '*4
-        string_operands[1] = string_operands[1] + ' '*4
         
-        first_output_line += string_operands[0]
-        second_output_line += string_operands[1]
-        third_output_line += '-'*(max_len_operand+2) + ' '*4
-        fourth_output_line += (str(result)[::-1] + ' '*((max_len_operand+2)-len(str(result))))[::-1] + ' '*4
+        separator = '    ' if i < len(problems)-1 else ''
+
+
+        string_operands[0] = string_operands[0]
+        string_operands[1] = string_operands[1]
+        
+        first_output_line += string_operands[0] + separator
+        second_output_line += string_operands[1] + separator
+        third_output_line += '-'*(max_len_operand+2) + separator
+        fourth_output_line += (str(result)[::-1] + ' '*((max_len_operand+2)-len(str(result))))[::-1] + separator
         
     
-    final_output = first_output_line + '\n' + second_output_line + '\n' + third_output_line + '\n'
+    final_output = first_output_line + '\n' + second_output_line + '\n' + third_output_line
 
     if show_answers:
-        final_output += fourth_output_line + '\n'
+        final_output += '\n' + fourth_output_line
 
     return final_output
         
